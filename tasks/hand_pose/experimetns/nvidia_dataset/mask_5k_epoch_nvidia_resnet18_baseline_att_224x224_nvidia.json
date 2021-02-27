@@ -1,0 +1,75 @@
+{
+    "train_dataset": {
+        "images_dir": "/home/mdesta/local/trainer/hand_dataset_masked/images",
+        "annotations_file": "/home/mdesta/local/trainer/hand_dataset_masked/nv_hand_annotation.json",
+        "category_name": "hand",
+        "masks_folder": "/home/mdesta/local/trainer/hand_dataset_masked/masks",
+        "bg_images_folder": "/home/mdesta/local/trainer/bg_images",
+        "image_shape": [224, 224],
+        "target_shape": [56, 56],
+        "stdev": 0.025,
+        "is_bmp": false,
+        "random_angle": [-0.7, 0.7],
+        "random_scale": [0.6, 1.4],
+        "random_translate": [-0.2, 0.2]
+    },
+    "stdev_schedule": {
+        "0": 0.025
+    },
+    "color_jitter": {
+        "brightness": 0.25,
+        "contrast": 0.25,
+        "saturation": 0.25,
+        "hue": 0.25
+    },
+    "test_dataset": {
+        "images_dir": "/home/mdesta/local/trainer/hand_dataset_masked/images",
+        "annotations_file": "/home/mdesta/local/trainer/hand_dataset_masked/nv_hand_annotation.json",
+        "category_name": "hand",
+        "masks_folder": "/home/mdesta/local/trainer/hand_dataset_masked/masks",
+        "bg_images_folder": "/home/mdesta/local/trainer/bg_images",
+        "image_shape": [224, 224],
+        "target_shape": [56, 56],
+        "stdev": 0.025,
+        "is_bmp": false,
+        "random_angle": [-0.0, 0.0],
+        "random_scale": [1.0, 1.0],
+        "random_translate": [-0.0, 0.0]
+    },
+    "train_loader": {
+        "batch_size": 64,
+        "shuffle": true,
+        "num_workers": 8,
+        "pin_memory": true
+    },
+    "test_loader": {
+        "batch_size": 64,
+        "shuffle": true,
+        "num_workers": 8,
+        "pin_memory": true
+    },
+    "model": {
+        "name": "resnet18_baseline_att",
+        "kwargs": {
+            "cmap_channels": 21,
+            "paf_channels": 40,
+            "upsample_channels": 256,
+            "num_upsample": 3
+        }
+    },
+    "optimizer": {
+        "name": "Adam",
+        "kwargs": {
+            "lr": 1e-3
+        }
+    },
+    "epochs": 5000,
+    "lr_schedule": {
+        "0": 0.0001,
+        "4000": 0.0000001,
+        "4500": 0.0000000001
+    },
+    "checkpoints": {
+        "interval": 50
+    }
+}
